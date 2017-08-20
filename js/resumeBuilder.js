@@ -35,8 +35,8 @@ var bio ={
 		$("#header").append(HTMLwelcomeMsg.replace("%data%",bio.welcomeMessage));
 		$("#header").append(HTMLskillsStart);
 
-		for(var skill in bio.skills) {
-			var formattedSkills = HTMLskills.replace("%data%",bio.skills[skill]);
+		for (var i = 0 ; i < bio.skills.length ; i++) {
+			var formattedSkills = HTMLskills.replace("%data%",bio.skills[i]);
 			$("#skills").append(formattedSkills);
 		}
 	}
@@ -55,7 +55,7 @@ var education = {
 		"name": "SEU",
 		"location": "Riyadh",
 		"degree": "BSC",
-		"majors": ["Information Technology"],
+		"majors": ["Information Technology","Computer Scince"],
 		"dates": "2012 - 2017",
 		"url": "seu.edu.sa"
 	}],
@@ -72,19 +72,22 @@ var education = {
 		"url": "http://Udacity.com"
 	}],
 	display: function(){
-		
-		for (var school in education.schools){
+		for (var school = 0; school < education.schools.length ; school++){
 			$("#education").append(HTMLschoolStart); 
 			$(".education-entry:last").append(HTMLschoolName.replace("%data%",education.schools[school].name) + 
 				HTMLschoolDegree.replace("%data%",education.schools[school].degree));
 			$(".education-entry:last").append();
 			$(".education-entry:last").append(HTMLschoolDates.replace("%data%",education.schools[school].dates));
 			$(".education-entry:last").append(HTMLschoolLocation.replace("%data%",education.schools[school].location));
-			$(".education-entry:last").append(HTMLschoolMajor.replace("%data%",education.schools[school].majors));
+			
+			for (var j = 0; j < education.schools[school].majors.length; j++) {
+				var formattedMajor = HTMLschoolMajor.replace("%data%", education.schools[school].majors[j]);
+				$(".education-entry:last").append(formattedMajor);
+			}
 		}
 
 		$(".education-entry:last").append(HTMLonlineClasses);
-		for (var course in education.onlineCourses){
+		for (var course = 0 ; course < education.onlineCourses.length ; course++){
 			$(".education-entry:last").append(HTMLonlineTitle.replace("%data%",education.onlineCourses[course].title) +
 				HTMLonlineSchool.replace("%data%",education.onlineCourses[course].school));
 			$(".education-entry:last").append(HTMLonlineDates.replace("%data%",education.onlineCourses[course].dates));
@@ -110,7 +113,7 @@ var work={
 	}],
 	display: function(){
 		
-		for (var job in work.jobs){
+		for (var job = 0 ;job < work.jobs.length ; job++){
 			$("#workExperience").append(HTMLworkStart);
 			$(".work-entry:last").append(HTMLworkEmployer.replace("%data%",work.jobs[job].employer)+
 				(HTMLworkTitle.replace("%data%",work.jobs[job].title)));
@@ -123,7 +126,7 @@ var work={
 };
 
 var projects ={
-	project: [{
+	projects: [{
 		"title": "My first Git project", 
 		"dates": "July-2017",
 		"description": "My first Git project as a baby-step repository",
@@ -137,18 +140,18 @@ var projects ={
 	}],
 	display: function(){
 		
-		for (var proj in projects.project){
+		for (var proj =0 ; proj < projects.projects.length; proj ++){
 			$("#projects").append(HTMLprojectStart);
-			var formatedTitle= HTMLprojectTitle.replace("%data%",projects.project[proj].title);
-			var formatedDates= HTMLprojectDates.replace("%data%",projects.project[proj].dates);
-			var formatedDescription= HTMLprojectDescription.replace("%data%",projects.project[proj].description);
+			var formatedTitle= HTMLprojectTitle.replace("%data%",projects.projects[proj].title);
+			var formatedDates= HTMLprojectDates.replace("%data%",projects.projects[proj].dates);
+			var formatedDescription= HTMLprojectDescription.replace("%data%",projects.projects[proj].description);
 			
 			$(".project-entry:last").append(formatedTitle);
 			$(".project-entry:last").append(formatedDates);
 			$(".project-entry:last").append(formatedDescription);
 
-			for(var img in projects.project[proj].images){
-				var formatedImages= HTMLprojectImage.replace("%data%",projects.project[proj].images[img]);
+			for(var img =0; img < projects.projects[proj].images.length ; img++){
+				var formatedImages= HTMLprojectImage.replace("%data%",projects.projects[proj].images[img]);
 				$(".project-entry:last").append(formatedImages);
 			}
 		}
