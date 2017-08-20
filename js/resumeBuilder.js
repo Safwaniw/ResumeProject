@@ -14,8 +14,6 @@ var bio ={
 	display: function (){
 		var formattedName = HTMLheaderName.replace("%data%",bio.name);
 		var formattedRole = HTMLheaderRole.replace("%data%",bio.role);
-		var formattedImage = HTMLbioPic.replace("%data%",bio.biopic);
-		var formattedMessage = HTMLwelcomeMsg.replace("%data%",bio.welcomeMessage);
 
 		$("#header").prepend(formattedRole);
 		$("#header").prepend(formattedName);
